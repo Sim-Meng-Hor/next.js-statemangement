@@ -13,8 +13,9 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import Heart from "@/assets/svg/heart";
+import { ProductResponse } from "@/lib/type/productResponse";
 
-const ProductCard = ({
+export default function ProductCard({
   id,
   title,
   images,
@@ -22,7 +23,7 @@ const ProductCard = ({
   description,
   category,
   slug,
-}) => {
+}: ProductResponse) {
   const [liked, setLiked] = useState<boolean>(false);
 
   return (
@@ -75,6 +76,4 @@ const ProductCard = ({
       </Card>
     </div>
   );
-};
-
-export default ProductCard;
+}

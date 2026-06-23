@@ -1,9 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { ecommerceApi } from "@/lib/feature/ecommerceApi";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const makeStore = () => {
-  return configureStore({
-    reducer: {},
+  const store = configureStore({
+    reducer: {
+      [ecommerceApi.reducerPath]: ecommerceApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(ecommerceApi.middleware),
   });
+
+  setupListeners(store.dispatch);
+  return store;
 };
 
 // Infer the type of makeStore

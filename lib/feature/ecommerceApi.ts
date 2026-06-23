@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ProductResponse } from "../type/productResponse";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API;
-const ecommerceApi = createApi({
+const BASE_URL = process.env.NEXT_PUBLIC_API;
+export const ecommerceApi = createApi({
   reducerPath: "ecommerceApi",
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API }),
   endpoints: (builder) => ({

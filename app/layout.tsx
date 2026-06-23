@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import NavbarPage from "./navbar-component-01/page";
 import { ThemeProvider } from "@/components/theme-provider";
+import StoreProvider from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -41,15 +42,17 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <NavbarPage />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main>{children}</main>
-        </ThemeProvider>
+        <StoreProvider>
+          <NavbarPage />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main>{children}</main>
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );
