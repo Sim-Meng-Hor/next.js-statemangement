@@ -3,14 +3,17 @@
 import Link from "next/link";
 import ProductCard from "../shadcn-studio/card/card-12";
 import { useGetProductsQuery } from "@/lib/feature/ecommerceApi";
-
+import Loader from "../ui/loader";
+import { Spinner } from "../ui/spinner";
 export default function ProductListClient() {
   const { data: products = [], isLoading, error } = useGetProductsQuery();
 
   if (isLoading) {
     return (
       <main className="container mx-auto">
-        <div className="flex items-center justify-center h-64">Loading...</div>
+        <div className="flex items-center justify-center h-64">
+          <Spinner className="size-20" /> Loading...
+        </div>
       </main>
     );
   }
