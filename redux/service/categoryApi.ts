@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ProductResponse } from "../type/productResponse";
+import { Category, ProductResponse } from "@/lib/type/productResponse";
 
 export type CreateProductRequest = {
   title: string;
@@ -10,14 +10,21 @@ export type CreateProductRequest = {
   categoryId: number;
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_API;
+export type CreateCategoryRequest = {
+  name: string;
+};
+
 export const ecommerceApi = createApi({
   reducerPath: "ecommerceApi",
-  tagTypes: ["Products"],
+  tagTypes: ["Products", "Categories"],
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API }),
   endpoints: (builder) => ({
     getProducts: builder.query<ProductResponse[], void>({
       query: () => "/api/v1/products",
+      providesTags: ["Products"],
+    }),
+    getProductsByCategory: builder.query<ProductResponse[], number>({
+      query: (categoryId) => `/api/v1/categories/${categoryId}/products`,
       providesTags: ["Products"],
     }),
     deleteAllProducts: builder.mutation<void, void>({
@@ -82,11 +89,21 @@ export const ecommerceApi = createApi({
       }),
       invalidatesTags: ["Products"],
     }),
+    createCategory: builder.mutation<Category, CreateCategoryRequest>({
+      query: (body) => ({
+        url: "/api/v1/categories",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Categories"],
+    }),
   }),
 });
 
 export const {
   useGetProductsQuery,
+  useGetProductsByCategoryQuery,
   useDeleteAllProductsMutation,
   useCreateProductMutation,
+  useCreateCategoryMutation,
 } = ecommerceApi;

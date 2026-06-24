@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ProductResponse } from "../type/productResponse";
+import { ProductResponse } from "@/lib/type/productResponse";
 
 export type CreateProductRequest = {
   title: string;
