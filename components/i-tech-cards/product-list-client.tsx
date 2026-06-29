@@ -268,7 +268,7 @@ export default function ProductListClient() {
       {deleteError && (
         <div className="mb-6 text-sm text-red-500">Error: {deleteError}</div>
       )}
-      <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <section className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <Link href={`/products/${product.id}`} key={product.id}>
             <ProductCard

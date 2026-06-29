@@ -76,7 +76,7 @@ export default function ProductCard({
         <p className="text-sm font-semibold text-emerald-600">
           {category.name}
         </p>
-        <h3 className="mt-1.5 text-xl font-bold leading-snug tracking-tight text-neutral-900">
+        <h3 className="mt-1.5 text-xl font-bold leading-snug tracking-tight text-neutral-900 line-clamp-1">
           {title}
         </h3>
         <p className="mt-2.5 text-lg font-semibold text-neutral-900">
